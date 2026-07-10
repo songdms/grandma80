@@ -930,3 +930,19 @@ body{
     letter-spacing:.3px;
 
 }
+
+.made-by{
+
+    text-align:center;
+
+    font-size:12px;
+
+    color:#646161;
+
+    letter-spacing:1px;
+
+    padding:40px 0 25px;
+
+    font-weight:300;
+
+}
