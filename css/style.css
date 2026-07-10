@@ -25,35 +25,29 @@ body{
     linear-gradient(
         rgba(0,0,0,.45),
         rgba(0,0,0,.65)
-        ),
+    ),
     url("../images/hero.jpg");
 
     background-size:cover;
+
     background-position:center;
+
     background-repeat:no-repeat;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
+
     text-align:center;
+
     position:relative;
-
-}
-
-.hero{
 
     animation:heroZoom 12s ease-in-out infinite alternate;
 
 }
-@media(max-width:768px){
 
-    .hero{
-
-        background-position:center center;
-
-    }
-
-}
 
 @keyframes heroZoom{
 
@@ -71,11 +65,12 @@ body{
 
 }
 
+
 @media(max-width:768px){
 
     .hero{
 
-        background-size:cover;
+        height:100svh;
 
         background-position:center center;
 
