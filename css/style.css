@@ -59,13 +59,27 @@ body{
 
     from{
 
-        background-size:100%;
+        background-size:cover;
 
     }
 
     to{
 
-        background-size:108%;
+        background-size:110%;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .hero{
+
+        background-size:cover;
+
+        background-position:center center;
+
+        animation:none;
 
     }
 
