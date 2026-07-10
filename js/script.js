@@ -201,3 +201,175 @@ galleryBtn.addEventListener("click", ()=>{
     galleryBtn.textContent = expanded ? "사진 접기" : "사진 더보기";
 
 });
+
+/* =====================
+   Lightbox Gallery
+===================== */
+
+const galleryImages = document.querySelectorAll(".gallery-grid img");
+
+const lightbox = document.getElementById("lightbox");
+
+const lightboxImg = document.getElementById("lightbox-img");
+
+const closeBtn = document.querySelector(".close");
+
+const prevBtn = document.querySelector(".prev");
+
+const nextBtn = document.querySelector(".next");
+
+const counter = document.getElementById("photo-counter");
+
+let currentIndex = 0;
+
+
+// 현재 사진 표시
+
+function showImage(index){
+
+    lightboxImg.src = galleryImages[index].src;
+
+    counter.innerHTML = `${index+1} / ${galleryImages.length}`;
+
+}
+
+
+// 열기
+
+galleryImages.forEach((img,index)=>{
+
+    img.addEventListener("click",()=>{
+
+        currentIndex = index;
+
+        showImage(currentIndex);
+
+        lightbox.classList.add("show");
+
+        document.body.style.overflow="hidden";
+
+    });
+
+});
+
+
+// 닫기
+
+function closeLightbox(){
+
+    lightbox.classList.remove("show");
+
+    document.body.style.overflow="";
+
+}
+
+closeBtn.addEventListener("click",closeLightbox);
+
+
+// 이전
+
+prevBtn.addEventListener("click",()=>{
+
+    currentIndex--;
+
+    if(currentIndex<0){
+
+        currentIndex=galleryImages.length-1;
+
+    }
+
+    showImage(currentIndex);
+
+});
+
+
+// 다음
+
+nextBtn.addEventListener("click",()=>{
+
+    currentIndex++;
+
+    if(currentIndex>=galleryImages.length){
+
+        currentIndex=0;
+
+    }
+
+    showImage(currentIndex);
+
+});
+
+
+// 배경 클릭 닫기
+
+lightbox.addEventListener("click",(e)=>{
+
+    if(e.target===lightbox){
+
+        closeLightbox();
+
+    }
+
+});
+
+
+// 키보드
+
+document.addEventListener("keydown",(e)=>{
+
+    if(!lightbox.classList.contains("show")) return;
+
+    if(e.key==="ArrowRight"){
+
+        nextBtn.click();
+
+    }
+
+    if(e.key==="ArrowLeft"){
+
+        prevBtn.click();
+
+    }
+
+    if(e.key==="Escape"){
+
+        closeLightbox();
+
+    }
+
+});
+
+
+// ======================
+// 모바일 스와이프
+// ======================
+
+let touchStartX = 0;
+
+let touchEndX = 0;
+
+lightbox.addEventListener("touchstart",(e)=>{
+
+    touchStartX = e.changedTouches[0].screenX;
+
+});
+
+lightbox.addEventListener("touchend",(e)=>{
+
+    touchEndX = e.changedTouches[0].screenX;
+
+    const distance = touchEndX - touchStartX;
+
+    if(distance > 60){
+
+        prevBtn.click();
+
+    }
+
+    if(distance < -60){
+
+        nextBtn.click();
+
+    }
+
+});
