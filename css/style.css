@@ -45,6 +45,15 @@ body{
     animation:heroZoom 12s ease-in-out infinite alternate;
 
 }
+@media(max-width:768px){
+
+    .hero{
+
+        background-position:center center;
+
+    }
+
+}
 
 @keyframes heroZoom{
 
